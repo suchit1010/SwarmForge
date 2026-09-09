@@ -30,39 +30,39 @@ interface ScriptCue {
 const TRAILER_CUES: ScriptCue[] = [
   {
     timecode: "0:00 - 0:45",
-    phase: "Act I: The Hook & Studio Lot Chaos",
-    title: "The Problem in Media & Entertainment",
+    phase: "Act I: The Hook & Creator Production Chaos",
+    title: "The Problem in Modern Media & Entertainment",
     narration:
-      "“Hollywood and modern media studios produce millions of petabytes of footage, but enterprise chaos reigns behind the scenes. Fragmented call sheets, unmonitored render farm GPU spikes, and disconnected dailies stall productions and burn millions. Today, we step onto the lot with Gauntlet Studios, powered by Gemini Enterprise Agent Platform and Google Cloud.”",
+      "“Whether you are a solo YouTube creator or a studio production lead, turning ideas into multi-platform media is crushed by operational chaos: tedious script cuts for Reels, unmonitored render queues, and guessing why audience retention drops off. Today, we step onto the lot with SwarmForge—an autonomous media production studio powered by Gemini Enterprise and Google Cloud.”",
     screenAction:
-      "Click 'Project Chronos' starter or show messy production notes with scene 42 dailies and GPU thermal alerts.",
+      "Click 'Solo Creator: Viral YouTube Script to Shorts & X Thread Swarm' starter or show the live mission intake.",
   },
   {
     timecode: "0:45 - 1:30",
-    phase: "Act II: The Multi-Agent Director Crew",
+    phase: "Act II: The Multi-Agent Creator Swarm",
     title: "Gemini Enterprise Multi-Agent Network",
     narration:
-      "“Watch the multi-agent network spring to life. The Lead Director Agent breaks down Scene 42 into shooting schedules, actors, and props. The Technical Producer Agent detects high-risk VFX plates, while the Safety Critic verifies SAG-AFTRA mandatory rest hours and legal contracts.”",
+      "“Watch the swarm spring to life. Powered by Gemini 3.5 and 3.7 Flash, the Lead Showrunner deconstructs our raw dump into an engagement-optimized YouTube script, 3 vertical 9:16 Shorts storyboards with B-roll visual cues, and a 7-post viral X thread. Our double-blind Critic audits retention hooks and zero-LLM safety ensures zero hallucinated claims.”",
     screenAction:
-      "Show the Agent Network executing rounds, generating structured mission cards, and parsing the scene breakdown.",
+      "Show the Agent Network executing rounds, generating structured mission cards, and displaying grounding verifications.",
   },
   {
     timecode: "1:30 - 2:15",
     phase: "Act III: Partner MCP Tool Execution",
-    title: "Live Runtime Partner Integration",
+    title: "Live Runtime Partner Integration (ClickHouse / Grafana / Parallel)",
     narration:
-      "“Here is the core technical architecture. Through managed Model Context Protocol (MCP) gateways, our agent connects directly to our partner ecosystem. With Grafana Labs, we observe real-time render node GPU load and fire PagerDuty alerts. With ClickHouse, we run sub-15ms SQL queries over millions of test screening telemetry events to identify scene retention drop-offs.”",
+      "“Through managed Model Context Protocol (MCP) gateways, SwarmForge connects directly to our partner ecosystem. With ClickHouse, we run sub-15ms SQL queries over millions of playback events to pinpoint exact second-by-second drop-offs and optimize thumbnail CTR. With Grafana Labs, we observe real-time GPU render loads and export queues. With Parallel, we accelerate swarm generation across sub-agents.”",
     screenAction:
-      "Navigate to the Partner Track Explorer. Execute a ClickHouse SQL query in 12ms and trigger the Grafana render farm alert webhook.",
+      "Navigate to Partner Track Explorer. Execute a ClickHouse SQL query in 12ms and trigger the Grafana render pipeline webhook.",
   },
   {
     timecode: "2:15 - 3:00",
     phase: "Act IV: The Climax & Greenlight",
-    title: "Autonomous 'Cmd / Approve' & Impact",
+    title: "Autonomous 'Cmd / Approve' & Distribution",
     narration:
-      "“Instead of manual busywork, the Studio Head simply approves the high-leverage decisions with a single keystroke: dispatching call sheets, re-allocating cloud compute on Parallel, and greenlighting release schedules. That's how Google Cloud and Gemini turn enterprise chaos into a summer blockbuster.”",
+      "“Instead of endless manual busywork, you don't do the grunt work—you just Cmd / Approve. With 1 click, stage Google Workspace dispatches, schedule release calendars, and deploy multi-platform assets. That is how SwarmForge and Google Cloud turn solo creators into unstoppable media powerhouses.”",
     screenAction:
-      "Show the Action Approval Center. One-click approve all pending actions with visual toast confirmation. Finish on the unified dashboard.",
+      "Show Action Approval Center. One-click approve all pending actions with visual toast confirmation. Finish on the unified dashboard.",
   },
 ];
 

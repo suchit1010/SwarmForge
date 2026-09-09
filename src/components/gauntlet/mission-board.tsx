@@ -23,6 +23,8 @@ import { IntegrationsPanel } from "@/components/gauntlet/integrations-panel";
 import { ServerProxyModal } from "@/components/gauntlet/server-proxy-modal";
 import { ActionDispatchGate } from "@/components/gauntlet/action-dispatch-gate";
 import { FirebaseAuthButton } from "@/components/gauntlet/firebase-auth-button";
+import { ScriptThumbnailModal } from "@/components/gauntlet/script-thumbnail-modal";
+import { DeliverableViewer } from "@/components/gauntlet/deliverable-viewer";
 import { useAuthUser } from "@/lib/auth/use-firebase-auth";
 import { syncMissionToFirestore } from "@/lib/firestore-sync";
 import { runGauntletRound } from "@/lib/gauntlet/run-round";
@@ -67,6 +69,8 @@ export function MissionBoard({ id }: { id: string }) {
   const [integrationsOpen, setIntegrationsOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hasServerKey, setHasServerKey] = useState(false);
+  const [thumbnailModalOpen, setThumbnailModalOpen] = useState(false);
+  const [thumbnailScript, setThumbnailScript] = useState<string>("");
   const runningLock = useRef(new Set<string>());
   const spotlight = useSpotlight();
 
@@ -234,7 +238,7 @@ export function MissionBoard({ id }: { id: string }) {
       <div className="flex min-h-dvh flex-col items-center justify-center gap-4 bg-bg px-6 text-center">
         <p className="font-display text-2xl">This mission is gone.</p>
         <Button asChild>
-          <Link to="/">Back to Gauntlet</Link>
+          <Link to="/">Back to SwarmForge</Link>
         </Button>
       </div>
     );
@@ -632,7 +636,15 @@ export function MissionBoard({ id }: { id: string }) {
                   );
                 })}
               </div>
-              {active && <ArtifactView artifact={active} />}
+              {active && (
+                <ArtifactView
+                  artifact={active}
+                  onOpenThumbnailStudio={(script) => {
+                    setThumbnailScript(script);
+                    setThumbnailModalOpen(true);
+                  }}
+                />
+              )}
               <ActionDispatchGate mission={mission} />
             </>
           )}
@@ -737,6 +749,11 @@ export function MissionBoard({ id }: { id: string }) {
       {apiKeyModalOpen && <ApiKeyModal onClose={() => setApiKeyModalOpen(false)} />}
       {proxyModalOpen && <ServerProxyModal onClose={() => setProxyModalOpen(false)} />}
       {integrationsOpen && <IntegrationsPanel onClose={() => setIntegrationsOpen(false)} />}
+      <ScriptThumbnailModal
+        open={thumbnailModalOpen}
+        onOpenChange={setThumbnailModalOpen}
+        initialScript={thumbnailScript}
+      />
     </div>
   );
 }
@@ -801,27 +818,18 @@ function EmptyWork({ running }: { running: boolean }) {
   );
 }
 
-function ArtifactView({ artifact }: { artifact: Artifact }) {
-  const spotlight = useSpotlight();
+function ArtifactView({
+  artifact,
+  onOpenThumbnailStudio,
+}: {
+  artifact: Artifact;
+  onOpenThumbnailStudio?: (script: string) => void;
+}) {
   return (
-    <article className="ai-studio-card rounded-xl p-5 sm:p-6" {...spotlight}>
-      <header className="flex flex-wrap items-center justify-between gap-2 border-b border-border/60 pb-3">
-        <div>
-          <span className="font-mono text-[10px] uppercase tracking-wider text-accent">
-            {KIND_LABEL[artifact.kind]}
-          </span>
-          <h3 className="mt-0.5 font-display text-lg sm:text-xl font-medium tracking-tight text-fg">
-            {artifact.title}
-          </h3>
-        </div>
-        <span className="rounded-full border border-border/80 bg-surface-2 px-2.5 py-0.5 font-mono text-[10px] text-muted">
-          {artifact.body.length} chars
-        </span>
-      </header>
-      <div className="prose prose-invert mt-4 max-w-none text-xs sm:text-sm leading-relaxed text-fg/90 whitespace-pre-wrap font-sans">
-        {artifact.body}
-      </div>
-    </article>
+    <DeliverableViewer
+      artifact={artifact}
+      onOpenThumbnailStudio={onOpenThumbnailStudio}
+    />
   );
 }
 

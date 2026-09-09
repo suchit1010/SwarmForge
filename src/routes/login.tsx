@@ -78,10 +78,10 @@ function LoginPage() {
         <div className="flex flex-col items-center gap-3">
           <LoopMark className="size-10 text-accent" />
           <h1 className="font-display text-2xl tracking-tight text-fg">
-            Sign in to Gauntlet
+            Sign in to SwarmForge
           </h1>
           <p className="text-center text-sm text-muted">
-            Your neural memory assistant
+            Your autonomous media production studio
           </p>
         </div>
 

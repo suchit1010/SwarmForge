@@ -4,18 +4,18 @@ import { PreviewHostBridge } from "@/components/preview-host-bridge";
 import { Toaster } from "sonner";
 import appCss from "../styles.css?url";
 
-const APP_NAME = "Gauntlet";
+const APP_NAME = "SwarmForge";
 
 export const Route = createRootRoute({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: APP_NAME },
+      { title: `${APP_NAME} — Autonomous Media Studio for Solo Creators` },
       {
         name: "description",
         content:
-          "Gauntlet is a work agent for everyone. Drop a messy job. It plans, builds, and criticizes itself until the work is done.",
+          "SwarmForge orchestrates autonomous multi-agent pipelines powered by Gemini Enterprise and cloud partner mesh, turning solo creators into high-velocity media studios.",
       },
       { name: "theme-color", content: "#0b0c0b" },
     ],

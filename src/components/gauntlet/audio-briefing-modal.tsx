@@ -22,10 +22,7 @@ import {
   VolumeX,
   Radio,
   FileText,
-  DollarSign,
-  Calendar,
   Flame,
-  Plane,
 } from "lucide-react";
 import { useBriefingStore, type BriefingPersona } from "@/lib/gauntlet/briefing-store";
 import { toast } from "sonner";
@@ -115,7 +112,7 @@ export function AudioBriefingModal({ open, onClose }: AudioBriefingModalProps) {
                   </Badge>
                 </div>
                 <DialogDescription className="text-xs text-neutral-400">
-                  Cross-system synthesized debrief of PnL, meetings, habits & travel itineraries.
+                  60-second audio summary of audience retention, render pipeline, staged actions & swarm health.
                 </DialogDescription>
               </div>
             </div>
@@ -136,10 +133,10 @@ export function AudioBriefingModal({ open, onClose }: AudioBriefingModalProps) {
           <div className="mt-4 flex flex-wrap gap-1.5 items-center">
             <span className="text-[11px] font-medium text-neutral-400 mr-1">Voice Persona:</span>
             {[
-              { id: "executive" as const, label: "Executive Advisor" },
-              { id: "operator" as const, label: "Tactical Operator" },
-              { id: "coach" as const, label: "Performance Coach" },
-              { id: "crisp" as const, label: "Crisp Tech Lead" },
+              { id: "executive" as const, label: "Studio Head" },
+              { id: "operator" as const, label: "Showrunner Director" },
+              { id: "coach" as const, label: "Viral Strategist" },
+              { id: "crisp" as const, label: "Tech Producer (MCP)" },
             ].map((p) => (
               <button
                 key={p.id}
@@ -164,42 +161,42 @@ export function AudioBriefingModal({ open, onClose }: AudioBriefingModalProps) {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
               <div className="rounded-xl border border-neutral-800/80 bg-neutral-900/50 p-2.5">
                 <div className="flex items-center gap-1.5 text-[10px] text-neutral-400 font-medium">
-                  <DollarSign className="size-3 text-emerald-400" /> Trading PnL
+                  <Flame className="size-3 text-emerald-400" /> Retention Rate
                 </div>
-                <div className={`text-base font-bold font-mono mt-1 ${stats.tradingPnl >= 0 ? "text-emerald-400" : "text-rose-400"}`}>
-                  {stats.tradingPnl >= 0 ? "+" : ""}${stats.tradingPnl.toFixed(2)}
+                <div className="text-base font-bold font-mono mt-1 text-emerald-400">
+                  {stats.retentionRate}%
                 </div>
-                <div className="text-[9px] text-neutral-500">{stats.tradesCount} positions</div>
+                <div className="text-[9px] text-neutral-500">ClickHouse telemetry</div>
               </div>
 
               <div className="rounded-xl border border-neutral-800/80 bg-neutral-900/50 p-2.5">
                 <div className="flex items-center gap-1.5 text-[10px] text-neutral-400 font-medium">
-                  <Calendar className="size-3 text-blue-400" /> Google Meetings
+                  <Sparkles className="size-3 text-blue-400" /> Critic Score
                 </div>
                 <div className="text-base font-bold font-mono text-blue-400 mt-1">
-                  {stats.meetingsCount}
+                  {stats.criticScore}/100
                 </div>
-                <div className="text-[9px] text-neutral-500">Scheduled syncs</div>
+                <div className="text-[9px] text-neutral-500">Hook & pacing audit</div>
               </div>
 
               <div className="rounded-xl border border-neutral-800/80 bg-neutral-900/50 p-2.5">
                 <div className="flex items-center gap-1.5 text-[10px] text-neutral-400 font-medium">
-                  <Flame className="size-3 text-amber-400" /> Routine Score
+                  <FileText className="size-3 text-amber-400" /> Deliverables
                 </div>
                 <div className="text-base font-bold font-mono text-amber-400 mt-1">
-                  {stats.productivityScore}%
+                  {stats.rendersCompleted} Formats
                 </div>
-                <div className="text-[9px] text-neutral-500">{stats.habitsCompleted}/{stats.habitsTotal} completed</div>
+                <div className="text-[9px] text-neutral-500">YouTube, Shorts, X</div>
               </div>
 
               <div className="rounded-xl border border-neutral-800/80 bg-neutral-900/50 p-2.5">
                 <div className="flex items-center gap-1.5 text-[10px] text-neutral-400 font-medium">
-                  <Plane className="size-3 text-purple-400" /> Travel & Tickets
+                  <Radio className="size-3 text-purple-400" /> Pending Actions
                 </div>
                 <div className="text-base font-bold font-mono text-purple-400 mt-1">
-                  {stats.ticketsActive}
+                  {stats.pendingActions} Staged
                 </div>
-                <div className="text-[9px] text-neutral-500">Active passes</div>
+                <div className="text-[9px] text-neutral-500">Cmd / Approve ready</div>
               </div>
             </div>
           )}

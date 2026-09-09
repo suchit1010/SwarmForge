@@ -1,18 +1,17 @@
 import {
+  Activity,
   CheckCheck,
   ChevronRight,
-  Compass,
+  Database,
   FileText,
+  Film,
   Key,
   Mic,
-  Plane,
   Plug,
   Plus,
   Radio,
-  Server,
-  Shield,
   Sparkles,
-  TrendingUp,
+  Wand2,
   Zap,
 } from "lucide-react";
 import { useState } from "react";
@@ -21,11 +20,9 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { ActionApprovalCenter } from "@/components/gauntlet/action-approval-center";
 import { MicroserviceMeshMonitor } from "@/components/gauntlet/microservice-mesh-monitor";
-import { DailyHabitTracker } from "@/components/gauntlet/daily-habit-tracker";
-import { TicketManager } from "@/components/gauntlet/ticket-manager";
-import { WatchdogPanel } from "@/components/gauntlet/watchdog-panel";
 import { StudioRoleBanner } from "@/components/gauntlet/studio-lot/studio-role-banner";
 import { PartnerTrackExplorer } from "@/components/gauntlet/studio-lot/partner-track-explorer";
+import { ScriptThumbnailStudio } from "@/components/gauntlet/script-thumbnail-studio";
 import { STARTERS } from "@/lib/gauntlet/starters";
 import { listMissions, useGauntlet } from "@/lib/gauntlet/store";
 import { useActionService } from "@/services/action-service";
@@ -43,7 +40,7 @@ interface MobileExecutiveViewProps {
   onInstallSample: () => void;
 }
 
-type MobileTab = "ACTIONS" | "MISSIONS" | "VOICE_BRIEF" | "SENTRY_OPS" | "CLOUD_MESH";
+type MobileTab = "ACTIONS" | "THUMBNAIL" | "MISSIONS" | "PARTNERS" | "VOICE";
 
 export function MobileExecutiveView({
   onStartBlank,
@@ -76,7 +73,7 @@ export function MobileExecutiveView({
 
   return (
     <div className="relative min-h-dvh bg-bg pb-24 text-fg select-none">
-      {/* ─── MOBILE TOP EXECUTIVE GLANCE BAR ─── */}
+      {/* ─── MOBILE TOP CREATOR GLANCE BAR ─── */}
       <div className="sticky top-[57px] z-20 border-b border-border/70 bg-surface/90 backdrop-blur-md px-4 py-2.5">
         <div className="flex items-center justify-between gap-2 overflow-x-auto no-scrollbar">
           {/* Autopilot Status Chip */}
@@ -85,18 +82,18 @@ export function MobileExecutiveView({
             <span>Autopilot: Active</span>
           </div>
 
-          {/* Quick PnL Chip */}
+          {/* Mesh Status */}
           <div className="flex items-center gap-1 shrink-0 rounded-full border border-border bg-surface-2 px-2.5 py-1 text-[11px] font-mono text-fg">
-            <TrendingUp className="size-3 text-pass" />
-            <span className="text-pass font-semibold">+$420</span>
-            <span className="text-muted">PnL</span>
+            <Activity className="size-3 text-emerald-400" />
+            <span className="text-muted">Swarm:</span>
+            <span className="text-fg font-semibold">6/6 Online</span>
           </div>
 
-          {/* Next Transit Chip */}
+          {/* ClickHouse Chip */}
           <div className="flex items-center gap-1 shrink-0 rounded-full border border-border bg-surface-2 px-2.5 py-1 text-[11px] font-mono text-fg">
-            <Plane className="size-3 text-sky-400" />
-            <span className="text-fg font-medium">UA 875</span>
-            <span className="text-muted">14h</span>
+            <Database className="size-3 text-accent" />
+            <span className="text-accent font-medium">&lt;15ms</span>
+            <span className="text-muted">ClickHouse</span>
           </div>
         </div>
       </div>
@@ -116,15 +113,27 @@ export function MobileExecutiveView({
                 </p>
               </div>
 
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={onOpenVoiceLive}
-                className="h-8 gap-1.5 border-blue-500/30 text-blue-300 bg-blue-500/5 text-xs"
-              >
-                <Mic className="size-3.5" />
-                <span>Voice Approve</span>
-              </Button>
+              <div className="flex items-center gap-1.5">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={onOpenDocsExport}
+                  className="h-8 gap-1 border-border/80 text-fg/80 bg-surface-2 text-xs"
+                >
+                  <FileText className="size-3.5" />
+                  <span>Export</span>
+                </Button>
+
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={onOpenVoiceLive}
+                  className="h-8 gap-1.5 border-accent/40 text-accent bg-accent/5 text-xs"
+                >
+                  <Mic className="size-3.5" />
+                  <span>Voice</span>
+                </Button>
+              </div>
             </div>
 
             {/* Render the full Action Approval Center */}
@@ -132,16 +141,23 @@ export function MobileExecutiveView({
           </div>
         )}
 
-        {/* TAB 2: MISSIONS & STARTERS */}
+        {/* TAB 2: YOUTUBE SCRIPT-TO-THUMBNAIL STUDIO */}
+        {activeTab === "THUMBNAIL" && (
+          <div className="flex flex-col gap-4 animate-in fade-in duration-150 pb-8">
+            <ScriptThumbnailStudio />
+          </div>
+        )}
+
+        {/* TAB 3: MISSIONS & CREATOR STARTERS */}
         {activeTab === "MISSIONS" && (
           <div className="flex flex-col gap-5 animate-in fade-in duration-150">
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="font-display text-xl font-semibold tracking-tight text-fg">
-                  Autonomous Missions
+                  Creator Production Swarm
                 </h2>
                 <p className="text-xs text-muted">
-                  3-agent pipeline: Lead, Builders, and Critic.
+                  Gemini 3.7 Flash Showrunner + Parallel Builders + Critic.
                 </p>
               </div>
               <Button
@@ -162,7 +178,7 @@ export function MobileExecutiveView({
             >
               <div className="flex items-center gap-2">
                 <Sparkles className="size-4 text-pass" />
-                <span className="font-medium">Load Ready Sample Mission</span>
+                <span className="font-medium">Load Live Demo Swarm</span>
               </div>
               <span className="font-mono text-[11px] text-pass font-semibold">Score: 91 →</span>
             </Button>
@@ -171,7 +187,7 @@ export function MobileExecutiveView({
             {recentMissions.length > 0 && (
               <div>
                 <h3 className="text-xs font-semibold uppercase tracking-wider text-muted mb-2">
-                  Active & Completed Missions
+                  Active & Completed Productions
                 </h3>
                 <div className="grid gap-2">
                   {recentMissions.map((m) => (
@@ -199,10 +215,10 @@ export function MobileExecutiveView({
             {/* Instant Starters */}
             <div>
               <h3 className="text-xs font-semibold uppercase tracking-wider text-muted mb-2">
-                Instant Presets
+                Instant Creator Starters
               </h3>
               <div className="grid gap-2">
-                {STARTERS.slice(0, 3).map((s) => (
+                {STARTERS.map((s) => (
                   <button
                     key={s.id}
                     type="button"
@@ -219,114 +235,8 @@ export function MobileExecutiveView({
           </div>
         )}
 
-        {/* TAB 3: EXECUTIVE AUDIO BRIEFING & VOICE */}
-        {activeTab === "VOICE_BRIEF" && (
-          <div className="flex flex-col gap-4 animate-in fade-in duration-150">
-            <div>
-              <h2 className="font-display text-xl font-semibold tracking-tight text-fg">
-                Voice & Audio Studio
-              </h2>
-              <p className="text-xs text-muted">
-                Synthesized 60-second podcast and conversational command engine.
-              </p>
-            </div>
-
-            {/* Audio Briefing Card */}
-            <div className="rounded-2xl border border-emerald-500/40 bg-emerald-500/10 p-4">
-              <div className="flex items-center gap-2.5">
-                <div className="flex size-10 items-center justify-center rounded-xl bg-emerald-500/20 text-emerald-300">
-                  <Radio className="size-5 animate-pulse" />
-                </div>
-                <div>
-                  <h3 className="font-display text-sm font-semibold text-fg">
-                    Daily Executive Briefing Podcast
-                  </h3>
-                  <p className="text-[11px] text-muted">
-                    60s summary of trading, missions & calendar holds.
-                  </p>
-                </div>
-              </div>
-              <Button
-                onClick={onOpenAudioBriefing}
-                className="mt-3.5 w-full bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-xs py-2 shadow-sm"
-              >
-                Listen to Executive Briefing
-              </Button>
-            </div>
-
-            {/* Live Voice Assistant Card */}
-            <div className="rounded-2xl border border-blue-500/40 bg-blue-500/10 p-4">
-              <div className="flex items-center gap-2.5">
-                <div className="flex size-10 items-center justify-center rounded-xl bg-blue-500/20 text-blue-300">
-                  <Mic className="size-5 animate-pulse" />
-                </div>
-                <div>
-                  <h3 className="font-display text-sm font-semibold text-fg">
-                    Gemini Live Voice Command
-                  </h3>
-                  <p className="text-[11px] text-muted">
-                    Say &quot;Approve all&quot;, &quot;Log $420 trading gain&quot;, or &quot;Book flight&quot;.
-                  </p>
-                </div>
-              </div>
-              <Button
-                onClick={onOpenVoiceLive}
-                className="mt-3.5 w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-medium text-xs py-2 shadow-sm"
-              >
-                Open Voice Studio
-              </Button>
-            </div>
-
-            {/* Quick Export tools */}
-            <div className="rounded-xl border border-border bg-surface p-3.5">
-              <h4 className="text-xs font-semibold text-fg mb-1">Export Deliverables</h4>
-              <p className="text-[11px] text-muted mb-3">
-                Format and push approved mission results to Google Docs or Drive.
-              </p>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={onOpenDocsExport}
-                className="w-full text-xs gap-1.5 border-border"
-              >
-                <FileText className="size-3.5 text-blue-400" />
-                <span>Google Docs Exporter</span>
-              </Button>
-            </div>
-          </div>
-        )}
-
-        {/* TAB 4: SENTRY OPS (WATCHDOG, HABITS, TICKETS) */}
-        {activeTab === "SENTRY_OPS" && (
-          <div className="flex flex-col gap-6 animate-in fade-in duration-150">
-            <div>
-              <h2 className="font-display text-xl font-semibold tracking-tight text-fg">
-                Sentry & Logistics Ops
-              </h2>
-              <p className="text-xs text-muted">
-                Trading Sentinels, flights, Amtrak tickets, and daily habits.
-              </p>
-            </div>
-
-            {/* Daily Habits & Trading PnL */}
-            <div>
-              <DailyHabitTracker />
-            </div>
-
-            {/* Ticket & Travel Gateway */}
-            <div>
-              <TicketManager onOpenVoice={onOpenVoiceLive} />
-            </div>
-
-            {/* Watchdog Circuit Breakers */}
-            <div>
-              <WatchdogPanel />
-            </div>
-          </div>
-        )}
-
-        {/* TAB 5: CLOUD MICROSERVICES MESH & PARTNER ECOSYSTEM */}
-        {activeTab === "CLOUD_MESH" && (
+        {/* TAB 3: PARTNER TRACKS & GPU CLUSTER */}
+        {activeTab === "PARTNERS" && (
           <div className="flex flex-col gap-4 animate-in fade-in duration-150">
             {/* Summer Blockbuster Studio Lot Role Banner */}
             <StudioRoleBanner
@@ -339,10 +249,10 @@ export function MobileExecutiveView({
 
             <div>
               <h2 className="font-display text-xl font-semibold tracking-tight text-fg">
-                Cloud Architecture Mesh
+                Cloud Render Telemetry
               </h2>
               <p className="text-xs text-muted">
-                Microservice health, latency p99, and distributed circuit breakers.
+                GPU cluster health, p99 transcode latency, and circuit breakers.
               </p>
             </div>
 
@@ -371,6 +281,66 @@ export function MobileExecutiveView({
             </div>
           </div>
         )}
+
+        {/* TAB 4: LIVE VOICE STUDIO & AUDIO BRIEFING */}
+        {activeTab === "VOICE" && (
+          <div className="flex flex-col gap-4 animate-in fade-in duration-150">
+            <div>
+              <h2 className="font-display text-xl font-semibold tracking-tight text-fg">
+                Voice & Audio Studio
+              </h2>
+              <p className="text-xs text-muted">
+                Real-time Web Audio pulsating visualizer and 60-second production summaries.
+              </p>
+            </div>
+
+            {/* Live Voice Assistant Card */}
+            <div className="rounded-2xl border border-accent/40 bg-accent/10 p-4">
+              <div className="flex items-center gap-2.5">
+                <div className="flex size-10 items-center justify-center rounded-xl bg-accent/20 text-accent">
+                  <Mic className="size-5 animate-pulse" />
+                </div>
+                <div>
+                  <h3 className="font-display text-sm font-semibold text-fg">
+                    Gemini Live Voice Co-Pilot
+                  </h3>
+                  <p className="text-[11px] text-muted">
+                    Brainstorm video hooks, dictate scripts, or say &quot;Approve all&quot;.
+                  </p>
+                </div>
+              </div>
+              <Button
+                onClick={onOpenVoiceLive}
+                className="mt-3.5 w-full bg-accent hover:bg-accent/90 text-accent-fg font-semibold text-xs py-2 shadow-sm"
+              >
+                Launch Voice Studio
+              </Button>
+            </div>
+
+            {/* Audio Briefing Card */}
+            <div className="rounded-2xl border border-emerald-500/40 bg-emerald-500/10 p-4">
+              <div className="flex items-center gap-2.5">
+                <div className="flex size-10 items-center justify-center rounded-xl bg-emerald-500/20 text-emerald-300">
+                  <Radio className="size-5 animate-pulse" />
+                </div>
+                <div>
+                  <h3 className="font-display text-sm font-semibold text-fg">
+                    Daily 60s Production Briefing
+                  </h3>
+                  <p className="text-[11px] text-muted">
+                    Audio recap of rendering queues, releases, and partner metrics.
+                  </p>
+                </div>
+              </div>
+              <Button
+                onClick={onOpenAudioBriefing}
+                className="mt-3.5 w-full bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-xs py-2 shadow-sm"
+              >
+                Play Audio Briefing
+              </Button>
+            </div>
+          </div>
+        )}
       </main>
 
       {/* ─── STICKY BOTTOM 1-TAP APPROVE BAR (ONLY ON ACTIONS TAB WHEN ACTIONS ARE PENDING) ─── */}
@@ -389,13 +359,13 @@ export function MobileExecutiveView({
         </div>
       )}
 
-      {/* ─── FLOATING VOICE MIC FAB (WHEN NOT ON BRIEFING TAB) ─── */}
-      {activeTab !== "VOICE_BRIEF" && (
+      {/* ─── FLOATING VOICE MIC FAB (WHEN NOT ON VOICE TAB) ─── */}
+      {activeTab !== "VOICE" && (
         <button
           type="button"
           onClick={onOpenVoiceLive}
           aria-label="Open voice command station"
-          className="ai-studio-btn-glow fixed bottom-20 right-4 z-40 flex size-12 items-center justify-center rounded-full bg-gradient-to-tr from-blue-600 to-indigo-600 text-white shadow-xl hover:scale-105 active:scale-95 transition-transform"
+          className="ai-studio-btn-glow fixed bottom-20 right-4 z-40 flex size-12 items-center justify-center rounded-full bg-accent text-accent-fg shadow-xl hover:scale-105 active:scale-95 transition-transform"
         >
           <Mic className="size-5" />
         </button>
@@ -423,7 +393,19 @@ export function MobileExecutiveView({
             <span className="text-[10px] mt-0.5">Actions</span>
           </button>
 
-          {/* 2. Missions */}
+          {/* 2. Thumbnails & Script Studio */}
+          <button
+            type="button"
+            onClick={() => setActiveTab("THUMBNAIL")}
+            className={`flex flex-col items-center justify-center py-1 px-2.5 transition-colors ${
+              activeTab === "THUMBNAIL" ? "text-accent font-semibold" : "text-muted hover:text-fg"
+            }`}
+          >
+            <Wand2 className="size-4" />
+            <span className="text-[10px] mt-0.5">Thumbnails</span>
+          </button>
+
+          {/* 3. Missions */}
           <button
             type="button"
             onClick={() => setActiveTab("MISSIONS")}
@@ -431,44 +413,32 @@ export function MobileExecutiveView({
               activeTab === "MISSIONS" ? "text-accent font-semibold" : "text-muted hover:text-fg"
             }`}
           >
-            <Compass className="size-4" />
-            <span className="text-[10px] mt-0.5">Missions</span>
+            <Film className="size-4" />
+            <span className="text-[10px] mt-0.5">Studio</span>
           </button>
 
-          {/* 3. Audio & Voice */}
+          {/* 3. Partner Tracks */}
           <button
             type="button"
-            onClick={() => setActiveTab("VOICE_BRIEF")}
+            onClick={() => setActiveTab("PARTNERS")}
             className={`flex flex-col items-center justify-center py-1 px-2.5 transition-colors ${
-              activeTab === "VOICE_BRIEF" ? "text-accent font-semibold" : "text-muted hover:text-fg"
+              activeTab === "PARTNERS" ? "text-accent font-semibold" : "text-muted hover:text-fg"
             }`}
           >
-            <Radio className="size-4" />
-            <span className="text-[10px] mt-0.5">Briefing</span>
+            <Database className="size-4" />
+            <span className="text-[10px] mt-0.5">Partners</span>
           </button>
 
-          {/* 4. Sentry Ops */}
+          {/* 4. Voice */}
           <button
             type="button"
-            onClick={() => setActiveTab("SENTRY_OPS")}
+            onClick={() => setActiveTab("VOICE")}
             className={`flex flex-col items-center justify-center py-1 px-2.5 transition-colors ${
-              activeTab === "SENTRY_OPS" ? "text-accent font-semibold" : "text-muted hover:text-fg"
+              activeTab === "VOICE" ? "text-accent font-semibold" : "text-muted hover:text-fg"
             }`}
           >
-            <Shield className="size-4" />
-            <span className="text-[10px] mt-0.5">Sentry</span>
-          </button>
-
-          {/* 5. Cloud Mesh */}
-          <button
-            type="button"
-            onClick={() => setActiveTab("CLOUD_MESH")}
-            className={`flex flex-col items-center justify-center py-1 px-2.5 transition-colors ${
-              activeTab === "CLOUD_MESH" ? "text-accent font-semibold" : "text-muted hover:text-fg"
-            }`}
-          >
-            <Server className="size-4" />
-            <span className="text-[10px] mt-0.5">Cloud</span>
+            <Mic className="size-4" />
+            <span className="text-[10px] mt-0.5">Voice</span>
           </button>
         </div>
       </nav>

@@ -15,67 +15,68 @@ export function DevpostSubmissionModal({
 }: DevpostSubmissionModalProps) {
   const activeTrack = usePartnerEcosystem((s) => s.activeTrack);
 
-  const submissionMarkdown = `# 🎬 Gauntlet Studios: Autonomous Media & Entertainment OS
+  const submissionMarkdown = `# 🎬 SwarmForge: Autonomous Media Production Studio for Solo Creators
 **Google Cloud Summer Blockbuster Hackathon Submission**
 
 ## 🌟 Tagline
-Transforming enterprise studio lot chaos into seamless cinematic blockbusters with Gemini Enterprise Agent Platform, Google Cloud, and partner MCP gateways.
+Turning solo creators and studio teams into full-scale autonomous media houses—orchestrating viral YouTube-to-Reels scripts, ClickHouse retention telemetry, and multi-agent swarm dispatches with Gemini Enterprise.
 
 ---
 
 ## 🎯 Selected Partner Track
 **Primary Track**: ${activeTrack} (${
-    activeTrack === "GRAFANA"
+    activeTrack === "CLICKHOUSE"
+      ? "ClickHouse - Real-Time Sub-Second Audience Retention & Media Analytics"
+      : activeTrack === "GRAFANA"
       ? "Grafana Labs - Production Pipeline & Render Farm Observability"
-      : activeTrack === "CLICKHOUSE"
-      ? "ClickHouse - Real-Time Sub-Second Columnar Media Analytics"
       : activeTrack === "PARALLEL"
-      ? "Parallel - Distributed Multi-Agent & Rendering Compute Pipeline"
+      ? "Parallel - Distributed Multi-Agent Swarm & Video Compute Pipeline"
       : activeTrack === "IBM"
       ? "IBM watsonx & Cloud IAM - Enterprise Media Governance & Rights"
       : "Replit - Dynamic In-Browser Media Scripting & Sandbox Execution"
   })
 
-*Note: Gauntlet Studios provides code-level runtime MCP tool adapters for all 5 partner platforms.*
+*Note: SwarmForge provides code-level runtime MCP tool adapters for all 5 partner platforms.*
 
 ---
 
-## 💡 The Problem (Real-World Enterprise M&E Chaos)
-Modern media productions generate petabytes of high-resolution 8K dailies, unmonitored render farm compute spikes, fragmented SAG-AFTRA call sheets, and multi-million-dollar budget overruns. Production crews spend 60% of their time on mundane coordination, manual timecode exports, and reactive firefighting rather than creative direction.
+## 💡 The Problem (Solo Creator Chaos & Multi-Platform Friction)
+Modern solo content creators (YouTube, Instagram Reels, TikTok, X) are essentially 1-person movie studios. Every day, they face crushing operational friction:
+- Spending 70% of their time slicing 1 longform video into 3 vertical shorts, writing hooks, and drafting X threads.
+- Inability to query raw second-by-second audience retention drop-offs (e.g. at minute 01:14) due to slow, opaque dashboard tools.
+- Rendering bottlenecks and unmonitored export queues stalling daily publishing cadence.
 
 ---
 
-## 🚀 The Solution & Architecture
-Gauntlet Studios implements a production-grade multi-agent operating system structured across three core enterprise personas:
+## 🚀 The Solution: SwarmForge Architecture
+SwarmForge deploys a specialized multi-agent swarm powered by Gemini Enterprise:
 
-1. **The Director (Vision & Multi-Agent Network)**:
-   - Powered by the **Gemini Enterprise Agent Platform** (\`gemini-2.5-pro\` and \`gemini-2.5-flash\`).
-   - Parses chaotic director notes, script drafts, and audio dumps into structured scene breakdowns, call sheets, camera plates, and crew rosters.
+1. **Lead Showrunner (Gemini 3.5 / 3.7 Flash)**:
+   - Ingests raw voice memos, messy notes, or video transcripts.
+   - Deconstructs them into viral YouTube video scripts with visual [B-ROLL] annotations, 3 vertical 9:16 Shorts/Reels storyboards, and 7-post X threads.
 
-2. **The Technical Producer (Managed MCP Pipelines)**:
-   - Connects to partner technologies via the open **Model Context Protocol (MCP)** standard.
-   - **Grafana Labs**: Real-time render node GPU load, 8K frame render p99 latency alerts, and PagerDuty escalations.
-   - **ClickHouse**: Sub-15ms SQL queries indexing millions of test-screening clickstream events and real-time box office presales.
-   - **Parallel**: 4.8x distributed compute acceleration for multi-scene script breakdowns and audio spatialization.
-   - **IBM watsonx**: SAG-AFTRA turnaround compliance audits and invisible steganographic digital watermarking.
-   - **Replit**: Dynamic Python/Node code execution for automated CMX3600 EDL exports and FFmpeg transcode recipes.
+2. **Parallel Swarm Execution (Parallel & Partner Mesh)**:
+   - Concurrently drafts platform-native adaptations without sequential bottlenecks.
+   - **ClickHouse**: Sub-15ms SQL queries over millions of playback retention events to identify exact drop-off moments and optimize thumbnail A/B CTR.
+   - **Grafana Labs**: Real-time rendering pipeline monitoring, GPU temperatures, export latency, and queue depths.
+   - **Replit**: Dynamic FFmpeg/Remotion script compilation for automated 9:16 vertical video cropping and burned-in captions.
+   - **IBM watsonx**: SAG-AFTRA, copyright, and sponsor disclosure compliance gates.
 
-3. **The Studio Head (Cloud IAM Governance & Zero-Friction Greenlight)**:
-   - "You don't do the work. You just Cmd / Approve."
-   - Executive approval gate for high-leverage decisions: budget increases, release schedules, and call sheet dispatch.
+3. **Autonomous Safety Gate & Cmd/Approve**:
+   - Zero-LLM deterministic grounding verification prevents hallucinated statistics or false claims before staging 1-click Google Workspace dispatches.
 
 ---
 
 ## 🛠️ Technology Stack
-- **Google Cloud Platform**: Gemini Enterprise Agent Builder, Cloud Run, Cloud Storage, Secret Manager.
-- **AI Models**: Google Gemini 2.5 Pro (complex scene logic) & Gemini 2.5 Flash (sub-second MCP tool calls & audio transcription).
-- **Partner Integrations**: Grafana Prometheus/Loki MCP, ClickHouse Columnar DB, Parallel Compute, IBM watsonx Policy Gate, Replit Execution Sandbox.
-- **Frontend & Runtime**: React 19, TypeScript, Tailwind CSS v4, Zustand with persistence, Recharts.
+- **Google Cloud**: Gemini Enterprise Agent Platform, Cloud Run, Cloud Firestore, Firebase Auth.
+- **AI Models**: Google Gemini 3.5 Flash & 3.7 Flash for structured generation, Web Audio real-time voice transcriber.
+- **Partner Integrations**: ClickHouse Columnar DB, Grafana Prometheus/Loki MCP, Parallel Compute Swarm, Replit Sandbox, IBM watsonx.
+- **Frontend & Runtime**: React 19, TypeScript, Tailwind CSS v4, Motion layout animations, Zustand.
 
 ---
 
 ## 📜 Open Source License
-Distributed under the **Apache License 2.0**. Full detectable LICENSE file included in repository root.`;
+Distributed under the **MIT License**. Complete open-source license included in repository root.`;
 
   if (!open) return null;
 

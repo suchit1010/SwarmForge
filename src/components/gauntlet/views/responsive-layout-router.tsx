@@ -168,10 +168,10 @@ export function ResponsiveLayoutRouter() {
               </div>
               <div className="flex items-center gap-1.5">
                 <span className="font-display text-base font-semibold tracking-tight text-fg">
-                  Gauntlet
+                  SwarmForge
                 </span>
-                <span className="rounded border border-border/60 bg-surface-2 px-1.5 py-0.5 font-mono text-[9px] font-semibold tracking-wider text-muted uppercase">
-                  OS
+                <span className="rounded border border-amber-500/30 bg-amber-500/10 px-1.5 py-0.5 font-mono text-[9px] font-semibold tracking-wider text-amber-400 uppercase">
+                  Studio
                 </span>
               </div>
             </button>
@@ -179,7 +179,7 @@ export function ResponsiveLayoutRouter() {
             <div className="hidden sm:flex items-center pl-3 border-l border-border/60">
               <div className="flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-2.5 py-1 font-mono text-[11px] text-emerald-400 whitespace-nowrap">
                 <span className="size-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,168,83,0.6)] animate-pulse" />
-                <span className="text-fg/90 font-medium">Gemini 3.5</span>
+                <span className="text-fg/90 font-medium">Gemini 3.7 Flash</span>
                 <span className="text-emerald-500/80 text-[10px]">Active</span>
               </div>
             </div>
@@ -458,6 +458,7 @@ export function ResponsiveLayoutRouter() {
           onOpenTrailerModal={() => setTrailerModalOpen(true)}
           onOpenDevpostModal={() => setDevpostModalOpen(true)}
           onInstallSample={handleInstallSample}
+          onQuickLaunch={(dump, goal) => launch(dump, goal, [])}
         />
       )}
 

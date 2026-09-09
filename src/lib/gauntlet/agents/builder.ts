@@ -166,10 +166,37 @@ ${opts.previousArtifacts.map((a) => `[${a.jobId}] ${a.kind}: ${a.title}\n${a.bod
   }
 
   try {
-    let raw: Record<string, unknown>;
+    let raw: Record<string, unknown> | null = null;
     try {
       raw = extractJson(res.text!) as Record<string, unknown>;
     } catch {
+      // Fallback 1: Extract individual artifact objects via regex
+      const text = res.text || "";
+      const matches = text.match(/\{\s*"id":[\s\S]*?"body":[\s\S]*?\}/g);
+      if (matches && matches.length > 0) {
+        const parsedItems: Record<string, unknown>[] = [];
+        for (const m of matches) {
+          try {
+            parsedItems.push(JSON.parse(m));
+          } catch {
+            // attempt simple repair
+            const titleMatch = m.match(/"title":\s*"([^"]+)"/);
+            const bodyMatch = m.match(/"body":\s*"((?:[^"\\]|\\.)*)"/);
+            if (titleMatch || bodyMatch) {
+              parsedItems.push({
+                title: titleMatch ? titleMatch[1] : undefined,
+                body: bodyMatch ? bodyMatch[1].replace(/\\n/g, "\n").replace(/\\"/g, '"') : undefined,
+              });
+            }
+          }
+        }
+        if (parsedItems.length > 0) {
+          raw = { artifacts: parsedItems };
+        }
+      }
+    }
+
+    if (!raw) {
       raw = {
         artifacts: opts.plan.map((p, i) => ({
           id: `a${i + 1}`,
@@ -186,12 +213,16 @@ ${opts.previousArtifacts.map((a) => `[${a.jobId}] ${a.kind}: ${a.title}\n${a.bod
 
     let artifacts: BuilderArtifact[] = artIn.slice(0, 6).map((item: Record<string, unknown>, i: number) => {
       const rawRefs = Array.isArray(item?.referenced_entities) ? item.referenced_entities : [];
+      let bodyText = String(item?.body ?? "").slice(0, 12000);
+      if (bodyText.includes("\\n") && !bodyText.includes("\n\n")) {
+        bodyText = bodyText.replace(/\\n/g, "\n").replace(/\\"/g, '"');
+      }
       return {
         id: String(item?.id ?? `a${i + 1}`),
         jobId: String(item?.jobId ?? opts.plan[i]?.id ?? `j${i + 1}`),
         kind: asKind(item?.kind),
         title: String(item?.title ?? opts.plan[i]?.title ?? "Untitled").slice(0, 140),
-        body: String(item?.body ?? "").slice(0, 12000),
+        body: bodyText,
         referenced_entities: rawRefs.map((r) => String(r).slice(0, 160)),
       };
     });

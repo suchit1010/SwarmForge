@@ -1,6 +1,6 @@
 {
-  "name": "Gauntlet",
-  "description": "Autonomous multi-agent execution engine with zero-friction Cmd / Approve, dedicated mobile and laptop command centers, and cloud microservice mesh.",
+  "name": "SwarmForge",
+  "description": "Autonomous multi-agent media production studio powered by Gemini and cloud partner mesh, orchestrating end-to-end content creation, analytics, and distribution for modern solo creators.",
   "requestFramePermissions": [
     "microphone"
   ],

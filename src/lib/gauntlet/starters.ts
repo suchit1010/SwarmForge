@@ -8,6 +8,51 @@ export type Starter = {
 
 export const STARTERS: Starter[] = [
   {
+    id: "solo-creator-viral-engine",
+    label: "🚀 Solo Creator: Viral YouTube Script to Shorts & X Thread Swarm",
+    audience: "Solo YouTubers, Reel Creators & Media Entrepreneurs",
+    goal: "Transform a 10-minute longform concept into an retention-engineered YouTube script, 3 vertical 9:16 Shorts/Reels with on-screen visual b-roll cues, a 7-tweet viral X thread, and automated Replit render scripts.",
+    dump: `RAW CREATOR MEMO: Building an AI Agent from Scratch in 2026
+Target Platforms: YouTube (16:9 Longform, 8-10 min), Instagram Reels & YouTube Shorts (9:16, 45-60s), X / Twitter (7-Post Thread).
+Sponsor: Parallel Compute (need 60s mid-roll shoutout with code SWARM20).
+
+Brain Dump & Talking Points:
+- The hook: "Everyone is hyping autonomous agents, but 90% of tutorials fail because of ungrounded actions and hallucinated dates."
+- Core breakdown:
+  1. The 3-agent pattern: Lead Decomposer, Parallel Builder, Adversarial Critic.
+  2. Why Zero-LLM safety gates save you from sending embarrassing emails to your boss.
+  3. Real demo: Connecting Gemini 3.5 to ClickHouse to query 100,000 logs in 18ms.
+- YouTube Thumbnail Concept: Split screen - Left side shows red error chaos, Right side shows clean terminal glowing green with "AUTONOMOUS IN 10 MIN".
+- Shorts / Reels angles:
+  * Short 1: "The 1 line of code that stops AI from hallucinating." (Hook in first 1.8s)
+  * Short 2: "Why you should never let an LLM call an API directly." (Visual: fake email catastrophe)
+- X Thread: Needs compelling hook tweet, architecture ASCII diagram, and link to GitHub repo.
+- Deliverables needed:
+  1. Full YouTube Script with timestamps and [B-ROLL CUE] annotations.
+  2. 3 Vertical Shorts storyboards with voiceover cadence and subtitle styling.
+  3. 7-Post X thread draft ready to stage.
+  4. Parallel swarm execution task to render proxies simultaneously.`,
+  },
+  {
+    id: "solo-creator-clickhouse-analytics",
+    label: "📊 ClickHouse Audience Retention & Thumb A/B Diagnostics",
+    audience: "Solo Creators & Media Analytics Engineers",
+    goal: "Query ClickHouse columnar events across 1.8M view sessions to pinpoint exact second-by-second drop-offs, audit CTR across thumbnail variations, and alert Grafana if intro retention dips below 65%.",
+    dump: `Channel Analytics Triage - Creator Studio Telemetry
+
+- Video ID: YT-AGENTS-101 ("I Replaced My Video Editor with an AI Swarm")
+- 1,840,000 total view sessions logged into ClickHouse 'playback_retention_events' table.
+- Problem: Sudden dip at 01:14 (from 74% retention down to 51% in 8 seconds). Need ClickHouse SQL query to inspect viewer exit timestamps and identify whether it's the sponsor segment or audio issue.
+- Thumbnail A/B Test:
+  * Thumb A (Close-up face + bold text "DON'T CODE"): 5.2% CTR
+  * Thumb B (Architecture graph + dark theme "SWARM"): 8.9% CTR (Higher watch time multiplier)
+- Grafana alert: Creator render pipeline queue has 3 reels transcoding; ensure GPU temp and export latency are stable.
+- Action needed:
+  1. Generate ClickHouse SQL query to calculate second-by-second retention curve.
+  2. Re-cut 01:14 segment to trim sponsor intro from 45s down to punchy 18s.
+  3. Automatically switch default YouTube thumbnail to Variation B via Google Workspace dispatch.`,
+  },
+  {
     id: "blockbuster-chronos",
     label: "🎬 Project Chronos: Sci-Fi Dailies & VFX Pipeline",
     audience: "Film Directors & Technical Producers",
