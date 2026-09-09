@@ -1,0 +1,16 @@
+{
+  "name": "Gauntlet",
+  "short_name": "Gauntlet",
+  "description": "Multi-agent autonomous engine powered by Gemini 3.5 & 2.5 Flash",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0c0b",
+  "theme_color": "#0b0c0b",
+  "icons": [
+    {
+      "src": "/_grok/icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

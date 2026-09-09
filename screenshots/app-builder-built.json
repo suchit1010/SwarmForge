@@ -1,0 +1,38 @@
+{
+  "url": "http://127.0.0.1:8081/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Gauntlet",
+      "hasCanvas": false,
+      "bodyTextLen": 2060,
+      "bodyTextHash": "3ce8ce11eaba3c709920e560b050e8ca55374c34481991d844819aaad121a3d9",
+      "bodyTextPrefix": "Gauntlet Start a mission A WORK AGENT FOR EVERYONE Drop the mess",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Gauntlet",
+      "hasCanvas": false,
+      "bodyTextLen": 2060,
+      "bodyTextHash": "3ce8ce11eaba3c709920e560b050e8ca55374c34481991d844819aaad121a3d9",
+      "bodyTextPrefix": "Gauntlet Start a mission A WORK AGENT FOR EVERYONE Drop the mess",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-built.json",
+  "divergesFromBaseline": false,
+  "baselineReasons": []
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Gauntlet",
+  "description": "Autonomous multi-agent execution engine with zero-friction Cmd / Approve, dedicated mobile and laptop command centers, and cloud microservice mesh.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

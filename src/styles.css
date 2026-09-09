@@ -1,0 +1,256 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0b0c0b;
+  --color-surface: #141614;
+  --color-surface-2: #1c1e1c;
+  --color-surface-3: #242624;
+  --color-fg: #e8e6df;
+  --color-muted: #9b9a92;
+  --color-subtle: #6e6d66;
+  --color-border: #2a2c2a;
+  --color-border-strong: #3d403d;
+  --color-accent: #d7ddd6;
+  --color-accent-fg: #0b0c0b;
+  --color-pass: #8fbf9a;
+  --color-fail: #d4786a;
+  --color-warn: #c4a574;
+  
+  /* Gemini & Google AI Studio signature palette */
+  --color-gemini-blue: #4285f4;
+  --color-gemini-purple: #9b72cb;
+  --color-gemini-coral: #d96570;
+  --color-gemini-cyan: #22d3ee;
+  --color-gemini-green: #34a853;
+
+  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", "Times New Roman", serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2rem;
+  --text-3xl: clamp(2rem, 5vw, 4rem);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-size-adjust: 100%;
+  }
+
+  html,
+  body,
+  #app {
+    min-height: 100%;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    line-height: 1.5;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-gemini-blue) 35%, transparent);
+    color: var(--color-fg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes gauntlet-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gauntlet-shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+@keyframes ai-studio-border-rotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes gemini-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.stagger-in {
+  animation: gauntlet-in 400ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.shimmer {
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in oklab, var(--color-gemini-cyan) 30%, transparent) 25%,
+    color-mix(in oklab, var(--color-gemini-purple) 40%, transparent) 50%,
+    color-mix(in oklab, var(--color-fg) 20%, transparent) 75%,
+    transparent 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gauntlet-shimmer 2.2s linear infinite;
+}
+
+/* Google AI Studio Signature Hover Effect */
+.ai-studio-card {
+  position: relative;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.ai-studio-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(66, 133, 244, 0.35),
+    rgba(155, 114, 203, 0.35),
+    rgba(217, 101, 112, 0.25),
+    transparent 60%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.ai-studio-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(66, 133, 244, 0.12),
+    rgba(155, 114, 203, 0.08),
+    rgba(217, 101, 112, 0.04),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.ai-studio-card:hover {
+  border-color: rgba(66, 133, 244, 0.4);
+  transform: translateY(-1.5px);
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.4), 0 0 20px -2px rgba(66, 133, 244, 0.12);
+}
+
+.ai-studio-card:hover::before,
+.ai-studio-card:hover::after {
+  opacity: 1;
+}
+
+/* Google AI Studio Glow Button */
+.ai-studio-btn-glow {
+  position: relative;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.ai-studio-btn-glow:hover {
+  box-shadow: 0 0 16px rgba(66, 133, 244, 0.35), 0 0 30px rgba(155, 114, 203, 0.2);
+  transform: translateY(-1px);
+}
+
+/* Subtle Gemini Border Highlight */
+.gemini-border-glow {
+  border: 1px solid transparent;
+  background-image: linear-gradient(var(--color-surface), var(--color-surface)),
+    linear-gradient(135deg, rgba(66, 133, 244, 0.5), rgba(155, 114, 203, 0.4), rgba(217, 101, 112, 0.3));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+/* Responsive custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-strong);
+}

@@ -1,0 +1,46 @@
+{
+  "entities": {
+    "users": {
+      "title": "User",
+      "description": "User profile records",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Auth UID" },
+        "email": { "type": "string", "description": "User email" },
+        "displayName": { "type": "string", "description": "User display name" },
+        "photoURL": { "type": "string", "description": "Profile picture URL" },
+        "createdAt": { "type": "string", "description": "Creation timestamp" }
+      },
+      "required": ["id", "email"]
+    },
+    "missions": {
+      "title": "Mission",
+      "description": "Gauntlet agent tasks and generated artifacts",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Mission unique identifier" },
+        "userId": { "type": "string", "description": "Owner user UID" },
+        "goal": { "type": "string", "description": "Goal or summary" },
+        "dump": { "type": "string", "description": "Raw intake input" },
+        "rounds": { "type": "array", "description": "Execution rounds and outputs" },
+        "createdAt": { "type": "string", "description": "Creation ISO date" },
+        "updatedAt": { "type": "string", "description": "Last updated ISO date" }
+      },
+      "required": ["id", "userId", "goal"]
+    },
+    "user_memories": {
+      "title": "User Memory",
+      "description": "Neural knowledge graph nodes and entities",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Memory ID" },
+        "userId": { "type": "string", "description": "Owner user UID" },
+        "key": { "type": "string", "description": "Memory entity key" },
+        "value": { "type": "string", "description": "Memory entity content" },
+        "category": { "type": "string", "description": "Category or domain" },
+        "updatedAt": { "type": "string", "description": "Updated timestamp" }
+      },
+      "required": ["id", "userId", "key", "value"]
+    }
+  }
+}
